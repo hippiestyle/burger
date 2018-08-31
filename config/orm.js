@@ -1,13 +1,30 @@
 var connection = require("./connection");
 
-function selectAll() {
+var orm = {
 
-};
+    selectAll: function() {
+        var queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function(err,result) {
+            if (err) throw err
+            console.log(result);
+        })  
+    }, 
 
-function insertOne() { 
+   insertOne: function(burger, devoured) { 
+        var queryString = "INSERT INTO burgers WHERE ??";
+        connection.query(queryString,
+        {     
+            burger_name: burger,
+            devoured: false
+        }, function(error, result) {
+            if (err) throw err 
+            console.log(result); 
 
-};
+        }
+        
+    };
 
-function updateOne() { 
+    function updateOne() { 
 
-};
+    };
+}
