@@ -1,30 +1,43 @@
 var connection = require("./connection");
 
 var orm = {
-
-    selectAll: function() {
-        var queryString = "SELECT * FROM burgers";
-        connection.query(queryString, function(err,result) {
+//working - prints out as a console log for now. (returns the result in selectAll function)
+    selectAll: function(table) {
+        var queryString = "SELECT * FROM ??";
+        connection.query(queryString, table, function(err,result) {
             if (err) throw err
-            console.log(result);
+            for (var i = 0; i < result.length; i++ ) {
+                console.log(result[i].burger_name); 
+            }  return result; 
         })  
     }, 
-
-   insertOne: function(burger, devoured) { 
-        var queryString = "INSERT INTO burgers WHERE ??";
+//works adds new burger using the burger and boolean. 
+   insertOne: function(burger, boolean) { 
+        var queryString = "INSERT INTO burgers SET ?";
         connection.query(queryString,
         {     
             burger_name: burger,
-            devoured: false
-        }, function(error, result) {
+            devoured: boolean
+        }, 
+        function(err, result) {
             if (err) throw err 
-            console.log(result); 
-
-        }
+            console.log("Updated " + result.changedRows + " rows..."); 
+        })
         
-    };
+    }, 
+// works right now, updates devoured for now. 
+    updateOne: function(table, devoured, boolean, locId, id) { 
+        var queryString = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+        
+        connection.query(queryString, [table, devoured, boolean, locId, id], 
+       
+            function(err,result) {
+                if (err) throw err
+                console.log("Updated:  " + result.message); 
+            })
 
-    function updateOne() { 
+    }
+};  
 
-    };
-}
+
+module.exports = orm; 
