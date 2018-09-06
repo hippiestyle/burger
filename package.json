@@ -2,7 +2,7 @@
   "name": "burger",
   "version": "1.0.0",
   "description": "Burger app where you're able to eat the burger, uses handlebars framework in an MVC to connect them all ",
-  "main": "index.js",
+  "main": "index.handlebars",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

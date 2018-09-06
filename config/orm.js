@@ -2,13 +2,16 @@ var connection = require("./connection");
 
 var orm = {
 //working - prints out as a console log for now. (returns the result in selectAll function)
-    selectAll: function(table) {
+    selectAll: function(table, cb) {
         var queryString = "SELECT * FROM ??";
         connection.query(queryString, table, function(err,result) {
             if (err) throw err
             for (var i = 0; i < result.length; i++ ) {
                 console.log(result[i].burger_name); 
-            }  return result; 
+
+            } 
+            console.log(result); 
+             cb(result); 
         })  
     }, 
 //works adds new burger using the burger and boolean. 
@@ -17,7 +20,7 @@ var orm = {
         connection.query(queryString,
         {     
             burger_name: burger,
-            devoured: boolean
+            devoured: false 
         }, 
         function(err, result) {
             if (err) throw err 

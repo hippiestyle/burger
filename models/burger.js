@@ -4,8 +4,10 @@ var whiskey = "Chick-Fil-A Chicken Burger";
 var one = 3; 
 
 
-orm.insertOne(whiskey, false); 
 
+// orm.insertOne(whiskey, false); 
+
+module.exports = orm;
 
 
 

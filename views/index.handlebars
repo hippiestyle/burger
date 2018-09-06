@@ -1,29 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
+<h1>All The Burgers You Want To Eat</h1>
 
-	<link href="https://fonts.googleapis.com/css?family=Crafty+Girls|Fontdiner+Swanky" rel="stylesheet">
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div>
+              <form action="/burgers/{{this.id}}" method="POST">
+                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+              </form>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </di
+      <div class="col s6">
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class='burgerEaten'>
+              <div>
+                {{this.burger_name}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
 
-	<!-- Compiled and minified Materialize CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<h2>Add a Burger</h2>
 
-	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
-	<title>Burgerlicious Devour Menu</title>
-</head>
+<div class="row">
+  <div class="col s12">
+    <form action="/burgers" method="POST">
+      <input type="text" id="name" name="burger_name" placeholder="The Best Burger">
+      <button type="submit" class="addBurgerButton">Add The Burger</button>
+    </form>
+  </div>
+</div>
 
-<body>
-	<img src="/assets/img/cute_burger.jpeg" width="400px" id="cute_burger">
 
-	{{{ body }}}
 
-	<footer class="burgerFooter">
-		<div class="footer-copyright">
-			<div class="container">
-				<span class="grey-text text-lighten-4">© 2017 angrbrd entertainment</span>
-				<a class="grey-text text-lighten-4 right" href="https://github.com/hippiestyle">Reference Work</a>
-			</div>
-		</div>
-	</footer>
-</body>
-</html>
+{{!-- ?_method=PUT --}}
