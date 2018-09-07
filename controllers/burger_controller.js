@@ -27,6 +27,7 @@ var app = express();
 
     //currently works -- adds burger to the list 
     router.put("/burgers/:id", function(req, res) {
+        console.log("Hello"); 
         var userId = req.params.id; 
         burger.updateOne("burgers", "devoured", 1, "id", userId)
         console.log("You officially updated devoured " + userId +" to 1"); 
