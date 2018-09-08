@@ -29,7 +29,7 @@ var orm = {
         
     }, 
 // works right now, updates devoured for now. 
-    updateOne: function(table, devoured, boolean, locId, id) { 
+    updateOne: function(table, devoured, boolean, locId, id, cb) { 
         var queryString = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
         
         connection.query(queryString, [table, devoured, boolean, locId, id], 
@@ -37,6 +37,7 @@ var orm = {
             function(err,result) {
                 if (err) throw err
                 console.log("Updated:  " + result.message); 
+                cb(result);
             })
 
     }

@@ -5,7 +5,7 @@ var one = 3;
 
 
 
-// orm.insertOne(whiskey, false); 
+// orm.updateOne("burgers","devoured",0,"id",4)
 
 module.exports = orm;
 

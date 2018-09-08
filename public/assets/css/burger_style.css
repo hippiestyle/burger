@@ -1,0 +1,14 @@
+.burgerAvailable {
+    padding: 10px; 
+    border-radius: 5px; 
+    background-color: blue; 
+
+}
+
+.container {
+    padding: 50px; 
+}
+
+.row {
+    padding: 200px; 
+}

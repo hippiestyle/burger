@@ -3,8 +3,6 @@ var express = require("express");
 var burger = require("../models/burger");
 var router = express.Router(); 
 
-var app = express(); 
-
     // currently works -- gets the list of the burgers and presents them on to buttons 
     router.get("/", function(req,res) {
 
@@ -13,26 +11,30 @@ var app = express();
             var hbs = {
                 burgers: data
         }
-        console.log("HBS OBJECT: ",  hbs)
         res.render("index", hbs); 
        })
     });
-    //currently not working -- cant find POST 
-    router.post("/burgers", function(req, res){
+    //works
+    router.post("/burgers/", function(req, res) {
         burger.insertOne(req.body.burger_name, 0)
-        console.log("req body: ",  req.body); 
         res.redirect("/"); 
 
     })
 
     //currently works -- adds burger to the list 
-    router.put("/burgers/:id", function(req, res) {
-        console.log("Hello"); 
-        var userId = req.params.id; 
-        burger.updateOne("burgers", "devoured", 1, "id", userId)
-        console.log("You officially updated devoured " + userId +" to 1"); 
-        res.redirect("/")
+    router.post("/burgers/:id", function(req, res) {
+        console.log("gets here");
+        var userId = req.params.id;         
+        burger.updateOne("burgers", "devoured", 1, "id", userId,function(){
+            
+            res.redirect("/")
+            
+        });
+        
     }); 
+
+
+    
 
     
 
