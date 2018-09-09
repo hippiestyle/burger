@@ -1,26 +1,27 @@
-<h1>The Burger Monster</h1>
 
-<main>
+<h1 style="text-align:center; color:white; border-style:solid; border-radius:3px; margin:40px;">THE BURGER LIST</h1>
+
+<main style="background-color: #4e342e; padding:10px">
   <div class="container">
     <div class="row">
       <div class="col s6">
-        <div id="eatenTitle">Burgers to Eat:</div>
+        <div style="color:white; text-align:center" id="eatenTitle">Burgers to Eat:</div>
         {{#each burgers}}
           {{#unless this.devoured}}
-            <div>
+            <div class="z-depth-1">
               <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+                <button type="submit" style="margin:5px; width:100%" class='waves-effect waves-light btn burgerAvailable'> {{this.burger_name}}</button>
               </form>
             </div>
           {{/unless}}
         {{/each}}
       </div>
       <div class="col s6">
-        <div id="devouredList">Burgers Eaten:</div>
+        <div style="color:white; text-align:center" id="devouredList">Burgers Eaten:</div>
         {{#each burgers}}
           {{#if this.devoured}}
-            <div class='burgerEaten'>
-              <div>
+            <div class="burgerEaten z-depth-2">
+              <div class="btn disabled " style="margin:5px; width:100%">
                 {{this.burger_name}}
               </div>
             </div>
@@ -31,13 +32,15 @@
   </div>
 </main>
 
-<h2>Add a Burger</h2>
+<h3 style="text-align:center; font-size: 24px; color: white; ">ADD A BURGER</h3>
 
 <div class="row">
   <div class="col s12">
     <form action="/burgers" method="POST">
+    <div style="text-align:center">
       <input type="text" id="name" name="burger_name" placeholder="The Best Burger">
-      <button type="submit" class="addBurgerButton">Add The Burger</button>
+      <button type="submit" class="addBurgerButton btn waves-effect waves-light">Add The Burger</i></button>
+      </div>
     </form>
   </div>
 </div>
